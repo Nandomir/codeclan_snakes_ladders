@@ -23,7 +23,7 @@ def setup()
 
 
   @ladder_array = [
-  @new_ladder_1 = Ladder.new("Ladder1", 4, 14),
+  @new_ladder_1 = Ladder.new("Ladder1", 8, 14),
   @new_ladder_2 = Ladder.new("Ladder2", 9, 30),
   @new_ladder_3 = Ladder.new("Ladder3", 20, 38),
   @new_ladder_4 = Ladder.new("Ladder4", 28, 84),
@@ -45,8 +45,8 @@ end
     assert_equal(1, @new_player.player_position)
   end
 
-  def test_add_dice_to_player_position__pass
-    @new_player.add_dice_to_player_position(@new_dice, @array_of_snakes, @array_of_ladders)
+  def test_add_dice_to_player_position__first_roll
+    @new_player.add_dice_to_player_position(@new_dice, @ladder_array, @snake_array)
     array_1_to_7 = [1,2,3,4,5,6,7]
     if array_1_to_7.include?(@new_player.player_position)
       asserted = true
@@ -54,15 +54,17 @@ end
     assert_equal(true, asserted)
   end
 
-  def test_add_dice_to_player_position__fail
-    @new_player.add_dice_to_player_position(@new_dice, @array_of_ladders, @array_of_snakes)
-    array_3_to_14 = [3,4,5,6,7,8,9,10,11,12,13,14]
-    if array_3_to_14.include?(@new_player.player_position)
-      asserted = true
-    else
-      asserted = false
-    end
-    assert_equal(true, asserted)
+  def test_new_player_position
+    @new_player.add_dice_to_player_position(@new_dice, @ladder_array, @snake_array)
+    @new_player2 = Player.new("Chris", @ladder_array, @snake_array)
+      expected = @new_player2.player_position
+    assert(expected != @new_player.player_position)
+  end
+
+  def test_players_goes_up_ladder
+    @new_player3 = Player.new("Nando", @ladder_array, @snake_array)
+    @player_position += 7
+    assert_equal()
   end
 
 end

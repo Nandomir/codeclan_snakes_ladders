@@ -12,7 +12,7 @@ class Player
   def add_dice_to_player_position(dice, array_of_ladders, array_of_snakes)
     dice = dice.roll_dice
     @player_position += dice
-
+    p @player_position
     for position_snake in array_of_snakes
       if position_snake.starting_point == @player_position
         @player_position = position_snake.ending_point
