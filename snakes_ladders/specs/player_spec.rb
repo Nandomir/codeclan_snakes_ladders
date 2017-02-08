@@ -33,6 +33,7 @@ def setup()
   @new_ladder_8 = Ladder.new("Ladder8", 71, 91)
 ]
   @new_player = Player.new("Jeff", @ladder_array, @snake_array)
+  @new_player2 = Player.new("Chris", @ladder_array, @snake_array)
   @new_dice = Dice.new()
 
 end
@@ -56,15 +57,38 @@ end
 
   def test_new_player_position
     @new_player.add_dice_to_player_position(@new_dice, @ladder_array, @snake_array)
-    @new_player2 = Player.new("Chris", @ladder_array, @snake_array)
       expected = @new_player2.player_position
     assert(expected != @new_player.player_position)
   end
 
   def test_players_goes_up_ladder
-    @new_player3 = Player.new("Nando", @ladder_array, @snake_array)
-    @player_position += 7
-    assert_equal()
+    sub_ladder_array = [ 
+    new_ladder_a = Ladder.new("Ladder a", 2, 7),
+    new_ladder_b = Ladder.new("Ladder b", 3, 34),
+    new_ladder_c = Ladder.new("Ladder c", 4, 19),
+    new_ladder_d = Ladder.new("Ladder d", 5, 60),
+    new_ladder_e = Ladder.new("Ladder e", 6, 24),
+    new_ladder_f = Ladder.new("Ladder f", 7, 73),
+    ]
+
+    sub_array_of_snakes = [
+      new_snake_a = Snake.new("Snake a", 15, 30),
+      new_snake_b = Snake.new("Snake b", 58, 34)
+]
+
+    @new_player2.add_dice_to_player_position(@new_dice, sub_ladder_array, sub_array_of_snakes)
+      test_landing_array = [7,34,19,60,24,73]
+      if test_landing_array.include?(@new_player2.player_position)
+        asserted = true
+      else  
+        asserted = false
+      end
+
+    assert_equal(asserted, true)
   end
+
+  # def test_win_condition
+  #   assert_equal("You win!", @new_player2.add_dice_to_player_position(@new_dice, @ladder_array, @snake_array))
+  # end
 
 end
